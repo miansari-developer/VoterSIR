@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 px-0">
+      <mat-toolbar>
+        <!-- <button matIconButton>
+            <mat-icon>menu</mat-icon>
+        </button> -->
+        <span>{{ title() }}</span>
+        <span class="spacer"></span>
+        <button matIconButton>
+          <mat-icon>verified_user</mat-icon>
+        </button>
+        <button matIconButton>
+          <mat-icon>share</mat-icon>
+        </button>
+      </mat-toolbar>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt-4">
+  <form class="row" id="sirSearchForm" [formGroup]="myform" (ngSubmit)="onMyFormSubmit()">
+    <div class="col-12">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Select State</mat-label>
+        <mat-select formControlName="stateCode" [required]="true">
+          @for (stateItem of stateList; track stateItem.stateCd) {
+          <mat-option value="{{ stateItem.stateCd }}">{{ stateItem.stateName }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-12">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>EPIC / Voter Id Number</mat-label>
+        <input matInput formControlName="epic" [required]="true" type="text" [minlength]="7" />
+      </mat-form-field>
+    </div>
+    <div class="col-12">
+      <button matButton="filled" [disabled]="!myform.valid" class="w-100">Submit</button>
+    </div>
+  </form>
+</div>
+
+<div class="container">
+  {{ formValues() }}
+</div>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <h3 class="text-center">Search History</h3>
+    <app-voter-epic-list class="px-0"></app-voter-epic-list>
+  </div>
+</div>
