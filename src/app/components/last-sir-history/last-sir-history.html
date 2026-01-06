@@ -1,0 +1,15 @@
+<mat-list>
+    @for (item of lastSirDB.votersLastSirList(); track item.id) {
+    <a mat-list-item matRipple>
+        <div matListItemAvatar class="avatar-number">{{ $index + 1 }}</div>
+        <div matListItemTitle>{{ item.electorName }}</div>
+        <div matListItemLine>{{ item.relativeName }} {{ item.relationType }}</div>
+        <div matListItemMeta>
+            <button mat-icon-button (click)="onDelete($event, item.id)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </a>
+    <mat-divider></mat-divider>
+    }
+</mat-list>
