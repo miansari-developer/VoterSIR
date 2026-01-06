@@ -1,50 +1,45 @@
 import { Injectable, signal } from '@angular/core';
 import { LocalStorageDB, BaseEntity } from './local-storage-db.service';
+import { VoterLastSIRRecord } from '../models/last-sir-api-response';
 
-export interface VoterEpic extends BaseEntity {
-  epic: string;
-  name: string;
-  stateCode: string;
-  stateName: string;
-}
 
 @Injectable({
   providedIn: 'root',
 })
-export class VotersEpicsService {
-  private db = new LocalStorageDB<VoterEpic>('voters-epics', ['epic']);
-  voterEpicList = signal<VoterEpic[]>([]);
+export class VotersLastSirService {
+  private db = new LocalStorageDB<VoterLastSIRRecord>('voters-last-sir-records', []);
+  votersLastSirList = signal<VoterLastSIRRecord[]>([]);
 
   constructor() {
-    this.voterEpicList.set(this.getAll());
+    this.votersLastSirList.set(this.getAll());
   }
   
   getAll() {
     return this.db.getAll();
   }
 
-  add(voter: Omit<VoterEpic, 'id'>) {
+  add(voter: Omit<VoterLastSIRRecord, 'id'>) {
     console.log('inside add:', voter);
     const a = this.db.insert(voter);
-    this.voterEpicList.set(this.getAll());
+    this.votersLastSirList.set(this.getAll());
     return a;
   }
 
-  update(id: number, updates: Partial<VoterEpic>) {
+  update(id: number, updates: Partial<VoterLastSIRRecord>) {
     const a = this.db.edit(id, updates);
-    this.voterEpicList.set(this.getAll());
+    this.votersLastSirList.set(this.getAll());
     return a;
   }
 
   delete(id: number) {
     const a = this.db.remove(id);
-    this.voterEpicList.set(this.getAll());
+    this.votersLastSirList.set(this.getAll());
     return a;
   }
 
   search(query: string) {
     const a = this.db.search(query);
-    this.voterEpicList.set(a);
+    this.votersLastSirList.set(a);
     return a;
   }
 

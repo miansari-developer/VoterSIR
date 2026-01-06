@@ -13,6 +13,7 @@ import { VoterEpic, VotersEpicsService } from '../../services/voters-epics.servi
 import { List } from '../../services/list';
 import { VoterEpicList } from '../voter-epic-list/voter-epic-list';
 import { WebViewBridgeService } from '../../services/webview-bridge.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home2',
@@ -28,6 +29,7 @@ import { WebViewBridgeService } from '../../services/webview-bridge.service';
     MatDividerModule,
     ReactiveFormsModule,
     VoterEpicList,
+    RouterModule
   ],
   templateUrl: './home2.html',
   styleUrl: './home2.css',
@@ -53,9 +55,18 @@ export class Home2 {
   async onMyFormSubmit() {
     console.log(this.myform.getRawValue());
     this.formValues.set(JSON.stringify(this.myform.getRawValue()));
+    this.addEpic()
     this.runCode();
   }
 
+  capitalizeEpic() {
+  const control = this.myform.get('epic');
+  const value = control?.value;
+
+  if (value) {
+    control?.setValue(value.toUpperCase(), { emitEvent: false });
+  }
+}
   async runCode() {
     const epic = this.myform.getRawValue().epic;
     const stateCode = this.myform.getRawValue().stateCode;
