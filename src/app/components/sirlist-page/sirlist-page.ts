@@ -2,7 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { VoterEpicList } from '../voter-epic-list/voter-epic-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { MatIconButton } from '@angular/material/button';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { VotersEpicsService } from '../../services/voters-epics.service';
@@ -13,7 +12,7 @@ import { VotersEpicsService } from '../../services/voters-epics.service';
     VoterEpicList,
     MatToolbarModule,
     MatIconModule,
-    MatIconButton,
+    
     MatFormField,
     MatInputModule,
   ],
