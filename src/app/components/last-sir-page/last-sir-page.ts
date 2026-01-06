@@ -9,7 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { VotersLastSirService } from '../../services/voter-last-sir-data.service';
@@ -51,35 +51,42 @@ listService = inject(List);
     partNumber:new FormControl(''),
     partSerialNumber:new FormControl('')
   });
+  constructor(private router: Router) {}
 
  async onMyFormSubmit(){
     console.log(this.myform.getRawValue());
     this.formValues.set(JSON.stringify(this.myform.getRawValue()));
+    this.router.navigate(['/lastsirresult'], {
+      state: {
+        formData: this.myform.value
+      }
+    });
+    return;
     const response:LastSIRApiResponse<VoterLastSIRRecordDTO> = this.dummyData.lastSirRecord
     const payload = response.payload[0];
     this.lastSirDB.add({
       electorName: payload.firstName+" "+payload.lastName,
-  epicNumber: payload.epicNumber,
-  stateCode: payload.oldStateCd,
-  electorHindiName:payload.firstNameHindi + " "+ payload.lastNameHindi,
-  relativeName:payload.relativeFName+" "+payload.relativeLName,
-  relativeHindiName:payload.relativeFNameHindi+" "+payload.relativeLNameHindi,
-  oldPartNumber: payload.oldPartNumber,
-  oldPartName: payload.oldPartName,
-  oldPartSerialNo: payload.oldPartSerialNo,
-  oldAcName: payload.oldAcName,
-  oldAcNo: payload.oldAcNo,
-  oldDistName: payload.oldDistName,
-  oldDistNo: payload.oldDistNo,
-  oldStateName: payload.oldStateName,
-  oldStateCd: payload.oldStateCd,
-  relationType: payload.relationType,
-  oldFullName: payload.oldFullName,
-  oldFullNameL1: payload.oldFullNameL1,
-  oldRelativeFullName: payload.oldRelativeFullName,
-  oldRelativeFullNameL1: payload.oldRelativeFullNameL1,
-  age: payload.age,
-  gender: payload.gender
+      epicNumber: payload.epicNumber,
+      stateCode: payload.oldStateCd,
+      electorHindiName:payload.firstNameHindi + " "+ payload.lastNameHindi,
+      relativeName:payload.relativeFName+" "+payload.relativeLName,
+      relativeHindiName:payload.relativeFNameHindi+" "+payload.relativeLNameHindi,
+      oldPartNumber: payload.oldPartNumber,
+      oldPartName: payload.oldPartName,
+      oldPartSerialNo: payload.oldPartSerialNo,
+      oldAcName: payload.oldAcName,
+      oldAcNo: payload.oldAcNo,
+      oldDistName: payload.oldDistName,
+      oldDistNo: payload.oldDistNo,
+      oldStateName: payload.oldStateName,
+      oldStateCd: payload.oldStateCd,
+      relationType: payload.relationType,
+      oldFullName: payload.oldFullName,
+      oldFullNameL1: payload.oldFullNameL1,
+      oldRelativeFullName: payload.oldRelativeFullName,
+      oldRelativeFullNameL1: payload.oldRelativeFullNameL1,
+      age: payload.age,
+      gender: payload.gender
     });
  }
 

@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Home2 } from './components/home2/home2';
 import { SIRListPage } from './components/sirlist-page/sirlist-page';
 import { LastSirPage } from './components/last-sir-page/last-sir-page';
+import { LastSirResult } from './components/last-sir-result/last-sir-result';
 
 export const routes: Routes = [
   {
@@ -15,5 +16,9 @@ export const routes: Routes = [
    {
     path: 'lastsir',
     component: LastSirPage,
+  },
+  {
+    path: 'lastsirresult',
+    component: LastSirResult,
   },
 ];
