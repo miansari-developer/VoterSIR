@@ -17,6 +17,18 @@ export class WebViewBridgeService {
     this.registerGlobalHandlers();
   }
 
+  uuid(): string {
+    if (crypto?.randomUUID) {
+      return crypto.randomUUID();
+    }
+
+    // Fallback (RFC 4122 v4 compliant)
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+      const r = (Math.random() * 16) | 0;
+      const v = c === 'x' ? r : (r & 0x3) | 0x8;
+      return v.toString(16);
+    });
+  }
   /**
    * Registers global functions required by Android WebView
    */
@@ -60,7 +72,7 @@ export class WebViewBridgeService {
     console.log(`📌 Code pushed in requestQueue -->\n${code}`);
 
     return new Promise((resolve, reject) => {
-      const requestId = crypto.randomUUID();
+      const requestId = this.uuid();
 
       const task = () => {
         this.pending.set(requestId, { resolve, reject });

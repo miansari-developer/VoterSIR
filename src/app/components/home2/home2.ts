@@ -14,6 +14,7 @@ import { List } from '../../services/list';
 import { VoterEpicList } from '../voter-epic-list/voter-epic-list';
 import { WebViewBridgeService } from '../../services/webview-bridge.service';
 import { RouterModule } from '@angular/router';
+import { VoterResponse } from '../../models/voter-response.model';
 
 @Component({
   selector: 'app-home2',
@@ -29,7 +30,7 @@ import { RouterModule } from '@angular/router';
     MatDividerModule,
     ReactiveFormsModule,
     VoterEpicList,
-    RouterModule
+    RouterModule,
   ],
   templateUrl: './home2.html',
   styleUrl: './home2.css',
@@ -49,24 +50,24 @@ export class Home2 {
   formValues = signal('');
   myform = new FormGroup({
     stateCode: new FormControl('S24'),
-    epic: new FormControl(''),
+    epic: new FormControl('UCC2398857'),
   });
 
   async onMyFormSubmit() {
     console.log(this.myform.getRawValue());
-    this.formValues.set(JSON.stringify(this.myform.getRawValue()));
-    this.addEpic()
+    //this.formValues.set(JSON.stringify(this.myform.getRawValue()));
+    //this.addEpic();
     this.runCode();
   }
 
   capitalizeEpic() {
-  const control = this.myform.get('epic');
-  const value = control?.value;
+    const control = this.myform.get('epic');
+    const value = control?.value;
 
-  if (value) {
-    control?.setValue(value.toUpperCase(), { emitEvent: false });
+    if (value) {
+      control?.setValue(value.toUpperCase(), { emitEvent: false });
+    }
   }
-}
   async runCode() {
     const epic = this.myform.getRawValue().epic;
     const stateCode = this.myform.getRawValue().stateCode;
@@ -76,8 +77,10 @@ export class Home2 {
       const result = await this.webviewBridge.executeInWebViewB(`
         return await fetchSIRInfo('${epic}', '${stateCode}', '${stateName}');
       `);
-      console.log('Result:', result);
-      this.addEpic();
+      console.log('Result:', JSON.stringify(result));
+      const response = new VoterResponse(result.data);
+      console.log(response.payload?.applicantFirstName);
+      //this.addEpic();
     } catch (err) {
       console.error('Execution failed:', err);
     }

@@ -1,1 +1,27 @@
-<p>{{formData}}</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 px-0">
+      <mat-toolbar>
+        <!-- <button matIconButton>
+              <mat-icon>menu</mat-icon>
+          </button> -->
+        <span> Last Sir Detail </span>
+      </mat-toolbar>
+    </div>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 mt-4">
+      @if (inProgress()) {
+      <mat-spinner></mat-spinner>
+      } @else { @if (!isFailed()) {
+      <p>Elector Name: {{sirData()?.['electorName'] }}</p>
+      <p>EPIC: {{sirData()?.['epicNumber'] }}</p>
+      <p>Relative Name: {{sirData()?.['relativeName']}}</p>
+      } @else {
+      <p>{{ message() }}</p>
+      } }
+    </div>
+  </div>
+</div>

@@ -1,15 +1,20 @@
 <mat-list>
-    @for (item of lastSirDB.votersLastSirList(); track item.id) {
-    <a mat-list-item matRipple>
-        <div matListItemAvatar class="avatar-number">{{ $index + 1 }}</div>
-        <div matListItemTitle>{{ item.electorName }}</div>
-        <div matListItemLine>{{ item.relativeName }} {{ item.relationType }}</div>
-        <div matListItemMeta>
-            <button mat-icon-button (click)="onDelete($event, item.id)">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </div>
-    </a>
-    <mat-divider></mat-divider>
-    }
+  @for (item of lastSirDB.votersLastSirList(); track item.id) {
+  <a mat-list-item matRipple class="py-2" (click)="onHistoryItemClicked(item)">
+    <div matListItemAvatar class="avatar-number">{{ $index + 1 }}</div>
+    <div matListItemTitle>Elector Name - {{ item.electorName }}</div>
+    <div matListItemLine>Relative Name - {{ item.relativeName }}</div>
+    <div matListItemLine>Relation - {{ item.relationType }}</div>
+    <div matListItemLine>State Name - {{ item.oldStateName }}</div>
+    <div matListItemLine>AC Number/Name - {{ item.oldAcNo }} - {{ item.oldAcNo }}</div>
+    <div matListItemLine>Part Number - {{ item.oldPartNumber }} - {{ item.oldPartName }}</div>
+    <div matListItemLine>Part Serial Number - {{ item.oldPartSerialNo }}</div>
+    <div matListItemMeta>
+      <button mat-icon-button (click)="onDelete($event, item.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </a>
+  <mat-divider></mat-divider>
+  }
 </mat-list>
