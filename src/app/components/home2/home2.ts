@@ -38,7 +38,8 @@ import {MatMenuModule} from '@angular/material/menu';
   styleUrl: './home2.css',
 })
 export class Home2 {
-  protected readonly title = signal('Voters SIR');
+  userName = signal("User");
+  protected readonly title = signal('Voter\'s SIR Status');
   epicList = signal<VoterEpic[]>([]);
   votersEpicDB = inject(VotersEpicsService);
   listService = inject(List);
@@ -335,6 +336,9 @@ export class Home2 {
     epic: new FormControl('FZJ3054038'), 
   });
 
+  ngOnInit(){
+    this.userName.set("Imran");
+  }
   async onMyFormSubmit() {
 
     const epic = this.myform.getRawValue().epic;
