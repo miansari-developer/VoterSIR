@@ -13,7 +13,7 @@ import { VoterEpic, VotersEpicsService } from '../../services/voters-epics.servi
 import { List } from '../../services/list';
 import { VoterEpicList } from '../voter-epic-list/voter-epic-list';
 import { WebViewBridgeService } from '../../services/webview-bridge.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { VoterResponse } from '../../models/voter-response.model';
 
 @Component({
@@ -43,48 +43,32 @@ export class Home2 {
   stateList = this.listService.stateList;
 
   webviewBridge = inject(WebViewBridgeService);
-  constructor() {
+  constructor(private router: Router) {
     this.epicList.set(this.votersEpicDB.getAll());
   }
 
   formValues = signal('');
   myform = new FormGroup({
     stateCode: new FormControl('S24'),
-    epic: new FormControl('UCC2398857'),
+    epic: new FormControl('FZJ3054038'), 
   });
 
   async onMyFormSubmit() {
-    console.log(this.myform.getRawValue());
-    //this.formValues.set(JSON.stringify(this.myform.getRawValue()));
-    //this.addEpic();
-    this.runCode();
-  }
 
-  capitalizeEpic() {
-    const control = this.myform.get('epic');
-    const value = control?.value;
-
-    if (value) {
-      control?.setValue(value.toUpperCase(), { emitEvent: false });
-    }
-  }
-  async runCode() {
     const epic = this.myform.getRawValue().epic;
     const stateCode = this.myform.getRawValue().stateCode;
     const stateName = this.stateList.find((x) => x.stateCd === stateCode)?.stateName;
-    try {
-      console.log('imran');
-      const result = await this.webviewBridge.executeInWebViewB(`
-        return await fetchSIRInfo('${epic}', '${stateCode}', '${stateName}');
-      `);
-      console.log('Result:', JSON.stringify(result));
-      const response = new VoterResponse(result.data);
-      console.log(response.payload?.applicantFirstName);
-      //this.addEpic();
-    } catch (err) {
-      console.error('Execution failed:', err);
-    }
+
+    this.router.navigate(['/sirstatusresult'], {
+      state: {
+        formData: {epic,stateCode,stateName},
+      },
+    });
+   
   }
+
+  
+  
   onDelete($event: MouseEvent, id: number) {
     $event.stopPropagation();
     $event.preventDefault();
@@ -92,16 +76,12 @@ export class Home2 {
   }
   dummyfunc() {}
 
-  addEpic() {
-    const stateCode = this.myform.getRawValue().stateCode;
-    const result = this.votersEpicDB.add({
-      epic: this.myform.getRawValue().epic,
-      name: 'Imran',
-      stateCode: stateCode,
-      stateName: this.stateList.find((x) => x.stateCd === stateCode)?.stateName,
-    });
-    if (!result) {
-      alert('Duplicate EPIC!');
+  capitalizeEpic() {
+    const control = this.myform.get('epic');
+    const value = control?.value;
+
+    if (value) {
+      control?.setValue(value.toUpperCase(), { emitEvent: false });
     }
   }
 }

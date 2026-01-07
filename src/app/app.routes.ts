@@ -3,11 +3,16 @@ import { Home2 } from './components/home2/home2';
 import { SIRListPage } from './components/sirlist-page/sirlist-page';
 import { LastSirPage } from './components/last-sir-page/last-sir-page';
 import { LastSirResult } from './components/last-sir-result/last-sir-result';
+import { SirStatusResult } from './components/sir-status-result/sir-status-result';
 
 export const routes: Routes = [
   {
     path: '',
     component: Home2,
+  },
+   {
+    path: 'sirstatusresult',
+    component: SirStatusResult,
   },
   {
     path: 'epics',

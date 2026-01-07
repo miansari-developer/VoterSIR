@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-voter-epic-item',
@@ -25,15 +26,16 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatDividerModule,
   ],
   template: `
-    <a mat-list-item matRipple>
+    <a mat-list-item matRipple (click)="onItemClicked($event)">
       <div matListItemAvatar class="avatar-number">{{ index() + 1 }}</div>
-      <div matListItemTitle>{{ epicItem().epic }}</div>
-      <div matListItemLine>{{ epicItem().name }} {{ epicItem().stateName }}</div>
-      <div matListItemMeta>
+      <div matListItemTitle>{{ epicItem().name }}</div>
+      <div matListItemLine>{{ epicItem().epic }}</div>
+      <div matListItemLine>{{ epicItem().stateName }}</div>
+      <!-- <div matListItemMeta>
         <button mat-icon-button (click)="onDelete($event, epicItem().id)">
           <mat-icon>delete</mat-icon>
         </button>
-      </div>
+      </div> -->
     </a>
     <mat-divider></mat-divider>
   `,
@@ -43,6 +45,22 @@ export class VoterEpicItem {
   votersEpicDB = inject(VotersEpicsService);
   epicItem = input.required<VoterEpic>();
   index = input.required<number>();
+
+   constructor(private router: Router) {
+  }
+  onItemClicked($event: MouseEvent){
+    //$event.stopPropagation();
+    $event.preventDefault();
+     this.router.navigate(['/sirstatusresult'], {
+      state: {
+        formData: {
+          epic:this.epicItem().epic,
+          stateCode:this.epicItem().stateCode,
+          stateName:this.epicItem().stateName}
+      },
+    });
+
+  }
   onDelete($event: MouseEvent, id: number) {
     $event.stopPropagation();
     $event.preventDefault();
