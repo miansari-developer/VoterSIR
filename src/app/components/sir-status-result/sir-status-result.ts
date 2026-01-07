@@ -48,14 +48,16 @@ export class SirStatusResult {
       
         this.votersEpicDB.add({
           epic:epic,
-          name: this.response()?.payload?.fullName,
+          name: this.response()?.payload?.fullName || "-",
           stateCode: stateCode,
           stateName: stateName,
         });
-        }
-        
+        } 
     } catch (err) {
       console.error('Execution failed:', err);
+      this.inProgress.set(false);
+      this.isFailed.set(true);
+      this.message.set('Execution failed: '+ err);
     }
   }
 }

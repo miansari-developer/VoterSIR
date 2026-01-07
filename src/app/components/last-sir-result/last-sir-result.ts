@@ -82,6 +82,9 @@ export class LastSirResult {
       }
     } catch (err) {
       console.error('Execution failed:', err);
+      this.inProgress.set(false);
+      this.isFailed.set(true);
+      this.message.set('Execution failed: '+ err)
     }
   }
 }
