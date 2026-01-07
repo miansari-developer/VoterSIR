@@ -16,8 +16,8 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "baseHref": "/voterSIR/apps/voter/",
-            "deployUrl": "/voterSIR/apps/voter/",
+            "baseHref": "/voterSIR/",
+            "deployUrl": "/voterSIR/",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
