@@ -11,8 +11,8 @@
     </div>
 </div>
 @if (inProgress()) {
-<div class="d-flex justify-content-center align-item-center">
-    <mat-spinner></mat-spinner>
+<div class="d-flex justify-content-center align-item-center mt-5">
+    <mat-spinner [diameter]="60" [strokeWidth]="4"></mat-spinner>
 </div>
 } @else {
 @if (isFailed()) {

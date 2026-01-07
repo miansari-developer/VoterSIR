@@ -10,6 +10,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-voter-epic-item',
@@ -24,11 +25,12 @@ import { Router } from '@angular/router';
     MatInputModule,
     MatSelectModule,
     MatDividerModule,
+    UpperCasePipe
   ],
   template: `
     <a mat-list-item matRipple (click)="onItemClicked($event)">
       <div matListItemAvatar class="avatar-number">{{ index() + 1 }}</div>
-      <div matListItemTitle>{{ epicItem().name }}</div>
+      <div matListItemTitle>{{ epicItem().name | uppercase}}</div>
       <div matListItemLine>{{ epicItem().epic }}</div>
       <div matListItemLine>{{ epicItem().stateName }}</div>
       <!-- <div matListItemMeta>
