@@ -225,4 +225,5 @@ document.querySelectorAll(`
 .footerCenter
   `).forEach(el => {
   el.style.visibility = "hidden";
+  el.style.height = "0px";
 });

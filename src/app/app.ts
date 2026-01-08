@@ -23,4 +23,6 @@ export class App {
         this.webviewBridge.executeInWebViewB(jsCode);
       });
   }
+
+  ////"scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
 }
