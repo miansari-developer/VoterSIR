@@ -53,13 +53,13 @@ export class VoterPayload {
   get fullName(): string {
     const first = this.data.applicantFirstName?.trim() ?? '';
     const last = this.data.applicantLastName?.trim() ?? '';
-    return `${first}${last ? ' ' + last : ''}` || '-';
+    return `${first} ${last ? '' + last : ''}` || '-';
   }
 
   get fullNameLanguage(): string {
     const first = this.data.applicantFirstNameL1 ?? '';
     const last = this.data.applicantLastNameL1 ?? '';
-    return `${first}${last ? ' ' + last : ''}`.trim() || '-';
+    return `${first} ${last ? '' + last : ''}`.trim() || '-';
   }
 
   get dateOfBirth(): string {

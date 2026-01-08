@@ -58,28 +58,41 @@
                         <td>{{response()?.payload?.fullName}}</td>
                     </tr>
                     <tr>
+                        <td>Elector Name Lang.</td>
+                        <td>{{response()?.payload?.fullNameLanguage}}</td>
+                    </tr>
+                    <tr>
                         <td>EPIC Number</td>
                         <td>{{response()?.payload?.epicNumber}}</td>
                     </tr>
                     <tr>
-                        <td>AC/Assembly</td>
-                        <td>{{response()?.payload?.acNumber}} - {{response()?.payload?.asmblyName}}</td>
+                        <td>AC or Assembly</td>
+                        <td>{{response()?.payload?.acNumber}} - {{response()?.payload?.asmblyName}}
+                            {{response()?.payload?.asmblyNameL1 ? ` / ${response()?.payload?.asmblyNameL1}`:''}}
+                        </td>
                     </tr>
                     <tr>
                         <td>Part Number</td>
-                        <td>{{response()?.payload?.partNumber}}</td>
+                        <td>{{response()?.payload?.partNumber}} - {{response()?.payload?.partName}}
+                            {{response()?.payload?.partNameL1 ? ` / ${response()?.payload?.partNameL1}`:''}}</td>
                     </tr>
                     <tr>
                         <td>Part Serial Number</td>
-                        <td>{{response()?.payload?.partSerialNumber}} - {{response()?.payload?.partName}}</td>
+                        <td>{{response()?.payload?.partSerialNumber}}</td>
                     </tr>
                     <tr>
                         <td>Parliament No./Name</td>
-                        <td>{{response()?.payload?.prlmntNo}} - {{response()?.payload?.prlmntName}}</td>
+                        <td>{{response()?.payload?.prlmntNo}} - {{response()?.payload?.prlmntName}}
+                            {{response()?.payload?.prlmntNameL1 ? ` / ${response()?.payload?.prlmntNameL1}`:''}}</td>
+                    </tr>
+                    <tr>
+                        <td>District</td>
+                        <td>{{response()?.payload?.districtName}}</td>
                     </tr>
                     <tr>
                         <td>State</td>
-                        <td>{{response()?.payload?.stateName}}</td>
+                        <td>{{response()?.payload?.stateName}} {{response()?.payload?.stateNameL1 ? ` /
+                            ${response()?.payload?.stateNameL1}`:''}}</td>
                     </tr>
                     <tr>
                         <td>Date of Birth</td>
