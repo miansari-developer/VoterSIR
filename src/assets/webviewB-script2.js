@@ -63,6 +63,10 @@ function notLoggedInAction() {
   AndroidBridge.showWebViewA(false);
   AndroidBridge.showWebViewB(true);
   AndroidBridge.showDebug(false);
+  const refreshCaptchaEle = document.querySelector("img[aria-label='refrsh captcha']");
+  if (refreshCaptchaEle) {
+    refreshCaptchaEle.click();
+  }
 }
 
 function loggedInAction() {
@@ -214,3 +218,11 @@ Object.assign(window, {
 });
 
 console.log('Webview-B js executed successfully');
+
+document.querySelectorAll(`
+#textContent > div.d-flex.flex-column.min-vh-100 > header > div > div.row.m-0,
+#textContent > div.d-flex.flex-column.min-vh-100 > header > div > div:nth-child(2) > div.col-md-6,
+.footerCenter
+  `).forEach(el => {
+  el.style.visibility = "hidden";
+});

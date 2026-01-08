@@ -18,7 +18,7 @@ export class App {
 
   loadAndExecuteWebviewBJs() {
     this.http
-      .get('assets/webviewB-script.js', { responseType: 'text' })
+      .get('assets/webviewB-script2.js', { responseType: 'text' })
       .subscribe(jsCode => {
         this.webviewBridge.executeInWebViewB(jsCode);
       });
