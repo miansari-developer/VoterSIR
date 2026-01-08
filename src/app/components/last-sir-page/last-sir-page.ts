@@ -40,9 +40,9 @@ export class LastSirPage {
   formValues = signal('');
   myform = new FormGroup({
     stateCode: new FormControl('S24'),
-    acNumber: new FormControl('261'),
-    partNumber: new FormControl('84'),
-    partSerialNumber: new FormControl('333'),
+    acNumber: new FormControl(''),
+    partNumber: new FormControl(''),
+    partSerialNumber: new FormControl(''),
   });
   constructor(private router: Router) {}
 

@@ -332,7 +332,7 @@ export class Home2 {
   formValues = signal('');
   myform = new FormGroup({
     stateCode: new FormControl('S24'),
-    epic: new FormControl('FZJ3054038'),
+    epic: new FormControl(''),
   });
 
   ngOnInit() {
