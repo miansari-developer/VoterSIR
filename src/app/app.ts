@@ -11,18 +11,18 @@ import { WebViewBridgeService } from './services/webview-bridge.service';
 })
 export class App {
   protected readonly title = signal('voters-sir');
-  constructor(private http: HttpClient) {
-   this.loadAndExecuteWebviewBJs();
-  }
-  webviewBridge = inject(WebViewBridgeService);
+  //constructor(private http: HttpClient) {
+  // this.loadAndExecuteWebviewBJs();
+  //}
+  // webviewBridge = inject(WebViewBridgeService);
 
-  loadAndExecuteWebviewBJs() {
-    this.http
-      .get('assets/webviewB-script2.js', { responseType: 'text' })
-      .subscribe(jsCode => {
-        this.webviewBridge.executeInWebViewB(jsCode);
-      });
-  }
+  // loadAndExecuteWebviewBJs() {
+  //   this.http
+  //     .get('assets/webviewB-script2.js', { responseType: 'text' })
+  //     .subscribe(jsCode => {
+  //       this.webviewBridge.executeInWebViewB(jsCode);
+  //     });
+  // }
 
   ////"scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
 }

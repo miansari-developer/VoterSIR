@@ -9,6 +9,7 @@ import {
 import { VotersLastSirService } from '../../services/voter-last-sir-data.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AndroidBridgeService } from '../../services/interstitial-ad.service';
 
 @Component({
   selector: 'app-last-sir-result',
@@ -24,7 +25,7 @@ export class LastSirResult {
   sirData = signal<Omit<VoterLastSIRRecord, 'id'> | null>(null);
   lastSirDB = inject(VotersLastSirService);
   webviewBridge = inject(WebViewBridgeService);
-  constructor(private router: Router) {}
+  constructor(private router: Router, private androidBridgeService:AndroidBridgeService) {}
 
   async ngOnInit() {
     const formData = history.state.formData;
@@ -86,5 +87,6 @@ export class LastSirResult {
       this.isFailed.set(true);
       this.message.set('Execution failed: '+ err)
     }
+     this.androidBridgeService.showInterstitial();
   }
 }

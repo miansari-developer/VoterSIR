@@ -6,6 +6,7 @@ import { VoterResponse } from '../../models/voter-response.model';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
+import { AndroidBridgeService } from '../../services/interstitial-ad.service';
 
 @Component({
   selector: 'app-sir-status-result',
@@ -21,9 +22,10 @@ export class SirStatusResult {
   votersEpicDB = inject(VotersEpicsService);
   webviewBridge = inject(WebViewBridgeService);
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private androidBridgeService:AndroidBridgeService) {}
 
   async ngOnInit() {
+    
     const formData = history.state.formData;
 
     if (!formData) {
@@ -59,5 +61,6 @@ export class SirStatusResult {
       this.isFailed.set(true);
       this.message.set('Execution failed: '+ err);
     }
+    this.androidBridgeService.showInterstitial();
   }
 }

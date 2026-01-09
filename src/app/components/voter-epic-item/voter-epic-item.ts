@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
+import { AndroidBridgeService } from '../../services/interstitial-ad.service';
 
 @Component({
   selector: 'app-voter-epic-item',
@@ -47,7 +48,6 @@ export class VoterEpicItem {
   votersEpicDB = inject(VotersEpicsService);
   epicItem = input.required<VoterEpic>();
   index = input.required<number>();
-
    constructor(private router: Router) {
   }
   onItemClicked($event: MouseEvent){
