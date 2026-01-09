@@ -9,7 +9,8 @@ import {
 import { VotersLastSirService } from '../../services/voter-last-sir-data.service';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AndroidBridgeService } from '../../services/interstitial-ad.service';
+import { AndroidBridgeService } from '../../services/android-bridge.service';
+
 
 @Component({
   selector: 'app-last-sir-result',

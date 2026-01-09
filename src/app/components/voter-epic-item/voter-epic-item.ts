@@ -11,7 +11,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
 import { UpperCasePipe } from '@angular/common';
-import { AndroidBridgeService } from '../../services/interstitial-ad.service';
 
 @Component({
   selector: 'app-voter-epic-item',

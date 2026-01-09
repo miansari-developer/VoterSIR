@@ -6,7 +6,7 @@ import { VoterResponse } from '../../models/voter-response.model';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
 import { MatProgressSpinner } from "@angular/material/progress-spinner";
-import { AndroidBridgeService } from '../../services/interstitial-ad.service';
+import { AndroidBridgeService } from '../../services/android-bridge.service';
 
 @Component({
   selector: 'app-sir-status-result',
