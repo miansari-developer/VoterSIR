@@ -94,8 +94,8 @@ async function fetchSIRInfo(epic, stateCode = 'S24', stateName = 'Uttar Pradesh'
   }
 
   const headerSubpart = {
-    atkn_bnd: localStorage.getItem('atkn_bnd'),
-    authorization: 'Bearer ' + getJWTAccessToken(),
+    atkn_bnd: window.context.atkn_bnd,
+    authorization: 'Bearer ' + window.context.accessToken,
   };
 
   try {
