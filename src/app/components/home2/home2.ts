@@ -38,7 +38,7 @@ import { MatMenuModule } from '@angular/material/menu';
 })
 export class Home2 {
   userName = signal('User');
-  protected readonly title = signal("Voter's SIR Status");
+  protected readonly title = signal("Voter SIR Status");
   epicList = signal<VoterEpic[]>([]);
   votersEpicDB = inject(VotersEpicsService);
   listService = inject(List);
